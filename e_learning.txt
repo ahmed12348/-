@@ -1,0 +1,11 @@
+  <header class="main_menu @if(Route::currentRouteName() == 'front.homepage' ) home_menu @else single_page_menu @endif">
+بيظهر حاجة لل single_page and home_menu
+ViewServiceProvider:-
+  view()->composer('front.inc.header',function($view)
+        {
+            $view->with('cats',Cat::select('id','name')->get());
+        });
+                  @foreach ($cats as $cat)
+                     <a class="dropdown-item" href="{{route('front.cat',$cat->id)}}"> {{ $cat->name }}</a>
+
+                          @endforeach
